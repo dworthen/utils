@@ -1,0 +1,4 @@
+[submodule "webapp-react-vite"]
+    path = packages/webapp-react-vite
+    url = git@github.com:dworthen/templates.git
+    branch = webapp-react-vite

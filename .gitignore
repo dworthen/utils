@@ -1,0 +1,7 @@
+node_modules
+packages/*/dist
+packages/*/lib
+*.env
+.env.*
+coverage
+.turbo
