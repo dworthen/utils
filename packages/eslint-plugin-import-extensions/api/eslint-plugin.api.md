@@ -4,19 +4,18 @@
 
 ```ts
 
-import { RuleListener } from '@typescript-eslint/utils/dist/ts-eslint/Rule.js';
-import { RuleModule } from '@typescript-eslint/utils/dist/ts-eslint/Rule.js';
+import * as _typescript_eslint_utils_dist_ts_eslint_Rule_js from '@typescript-eslint/utils/dist/ts-eslint/Rule.js';
 
 // @public (undocumented)
 const _default: {
     rules: {
-        extensions: RuleModule<ExtensionMessageIds, [{
-        files?: string[] | undefined;
-        ignorePackages?: boolean | undefined;
-        relativeModulePrefixes?: string[] | undefined;
-        expectedExtensions?: string[] | undefined;
-        disallowedExtensions?: string[] | undefined;
-        }[]], RuleListener>;
+        extensions: _typescript_eslint_utils_dist_ts_eslint_Rule_js.RuleModule<ExtensionMessageIds, [{
+            files?: string[] | undefined;
+            ignorePackages?: boolean | undefined;
+            relativeModulePrefixes?: string[] | undefined;
+            expectedExtensions?: string[] | undefined;
+            disallowedExtensions?: string[] | undefined;
+        }[]], _typescript_eslint_utils_dist_ts_eslint_Rule_js.RuleListener>;
     };
 };
 export default _default;
@@ -25,18 +24,18 @@ export default _default;
 //
 // @public (undocumented)
 export const rules: {
-    extensions: RuleModule<ExtensionMessageIds, [{
-    files?: string[] | undefined;
-    ignorePackages?: boolean | undefined;
-    relativeModulePrefixes?: string[] | undefined;
-    expectedExtensions?: string[] | undefined;
-    disallowedExtensions?: string[] | undefined;
-    }[]], RuleListener>;
+    extensions: _typescript_eslint_utils_dist_ts_eslint_Rule_js.RuleModule<ExtensionMessageIds, [{
+        files?: string[] | undefined;
+        ignorePackages?: boolean | undefined;
+        relativeModulePrefixes?: string[] | undefined;
+        expectedExtensions?: string[] | undefined;
+        disallowedExtensions?: string[] | undefined;
+    }[]], _typescript_eslint_utils_dist_ts_eslint_Rule_js.RuleListener>;
 };
 
 // Warnings were encountered during analysis:
 //
-// dist/types/index.d.ts:12:9 - (ae-forgotten-export) The symbol "ExtensionMessageIds" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:27:9 - (ae-forgotten-export) The symbol "ExtensionMessageIds" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

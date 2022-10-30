@@ -13,7 +13,12 @@
     "skipLibCheck": true,
     "useDefineForClassFields": true,
     "forceConsistentCasingInFileNames": true,
-    "noErrorTruncation": true
+    "noErrorTruncation": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
   },
   "exclude": [
     "node_modules",
