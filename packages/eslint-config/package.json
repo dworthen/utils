@@ -1,0 +1,52 @@
+{
+  "name": "@d-dev/eslint-config",
+  "version": "1.0.0",
+  "description": "eslint config",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "clean": "shx rm -rf ./dist",
+    "build": "tsup --dts",
+    "start": "tsup --watch",
+    "docs": "api-extractor run --local"
+  },
+  "author": "Derek Worthen <worthend.derek@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@d-dev/eslint-plugin": "workspace:^1.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "@typescript-eslint/parser": "^5.41.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^8.0.0"
+  },
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.33.5",
+    "@types/node": "^18.11.7",
+    "@typescript-eslint/utils": "^5.41.0",
+    "eslint": "^8.26.0",
+    "npm-run-all": "^4.1.5",
+    "shx": "^0.3.4",
+    "tsup": "^6.3.0",
+    "typescript": "^4.8.4"
+  },
+  "peerDependencies": {
+    "eslint": "^8.26.0",
+    "prettier": "^2.7.1"
+  }
+}
