@@ -27,6 +27,8 @@
   },
   "keywords": [
     "plop",
+    "addFiles",
+    "scaffold",
     "plugin"
   ],
   "author": "Derek Worthen <worthend.derek@gmail.com>",

@@ -5,7 +5,7 @@ A collection of eslint rules for esm modules.
 ## Install
 
 ```bash
-$ npm install eslint-plugin-esm -D
+$ npm install @d-dev/eslint-plugin -D
 ```
 
 ## Configure
