@@ -1,0 +1,48 @@
+{
+  "name": "@d-dev/create-workspace",
+  "version": "0.0.0",
+  "description": "plop generators",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "create-workspace": "./dist/index.js"
+  },
+  "files": [
+    "dist/",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
+  "scripts": {
+    "clean": "shx rm -rf ./dist",
+    "build": "tsup",
+    "start": "tsup --watch"
+  },
+  "author": "Derek Worthen <worthend.derek@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dworthen/utils"
+  },
+  "homepage": "https://github.com/dworthen/utils",
+  "license": "MIT",
+  "dependencies": {
+    "@d-dev/logger": "workspace:^1.1.0",
+    "@d-dev/plop-add-files-plugin": "workspace:^1.2.1",
+    "plop": "^3.1.1"
+  },
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.33.5",
+    "@types/node": "^18.11.8",
+    "shx": "^0.3.4",
+    "tsup": "^6.3.0",
+    "typescript": "^4.8.4"
+  }
+}
