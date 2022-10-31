@@ -122,9 +122,24 @@ importers:
       tsup: 6.3.0_mwhvu7sfp6vq5ryuwb6hlbjfka
       typescript: 4.8.4
 
+  packages/logger:
+    specifiers:
+      '@types/debug': ^4.1.7
+      debug: ^4.3.4
+      shx: ^0.3.4
+      tsup: ^6.3.0
+      typescript: ^4.8.4
+    dependencies:
+      debug: 4.3.4
+    devDependencies:
+      '@types/debug': 4.1.7
+      shx: 0.3.4
+      tsup: 6.3.0_typescript@4.8.4
+      typescript: 4.8.4
+
   packages/plop-add-files-plugin:
     specifiers:
-      '@d-dev/logger': ^1.0.4
+      '@d-dev/logger': workspace:^1.0.4
       '@types/glob': ^8.0.0
       '@types/node': ^18.11.8
       glob: ^8.0.3
@@ -133,7 +148,7 @@ importers:
       tsup: ^6.3.0
       typescript: ^4.8.4
     dependencies:
-      '@d-dev/logger': 1.0.4
+      '@d-dev/logger': link:../logger
       glob: 8.0.3
     devDependencies:
       '@types/glob': 8.0.0
@@ -681,15 +696,6 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
-  /@d-dev/logger/1.0.4:
-    resolution: {integrity: sha512-KLx4dA50XqiHIVnuO7oI68e7YmyeS+O3fuzvFEGMROggHHMJvYzZPeSlTlOYwb0z3sDqJA5/vSA9Dn7GSjEZiA==}
-    dependencies:
-      debug: 4.3.4
-      tslib: 2.4.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /@esbuild/android-arm/0.15.12:
     resolution: {integrity: sha512-IC7TqIqiyE0MmvAhWkl/8AEzpOtbhRNDo7aph47We1NbE5w2bt/Q+giAhe0YYeVpYnIhGMcuZY92qDK6dQauvA==}
     engines: {node: '>=12'}
@@ -1194,6 +1200,12 @@ packages:
     resolution: {integrity: sha512-+euflG6ygo4bn0JHtn4pYqcXwRtLvElQ7/nnjDu7iYG56H0+OhCd7d6Ug0IE3WcFpZozBKW2+80FUbv5QGk5AQ==}
     dev: true
 
+  /@types/debug/4.1.7:
+    resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
+    dependencies:
+      '@types/ms': 0.7.31
+    dev: true
+
   /@types/eslint/8.4.9:
     resolution: {integrity: sha512-jFCSo4wJzlHQLCpceUhUnXdrPuCNOjGFMQ8Eg6JXxlz3QaCKOb7eGi2cephQdM4XTYsNej69P9JDJ1zqNIbncQ==}
     dependencies:
@@ -1283,6 +1295,10 @@ packages:
 
   /@types/minimist/1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
+    dev: true
+
+  /@types/ms/0.7.31:
+    resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
     dev: true
 
   /@types/node/12.20.24:
@@ -5914,6 +5930,7 @@ packages:
 
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
+    dev: true
 
   /tsup/6.3.0_mwhvu7sfp6vq5ryuwb6hlbjfka:
     resolution: {integrity: sha512-IaNQO/o1rFgadLhNonVKNCT2cks+vvnWX3DnL8sB87lBDqRvJXHENr5lSPJlqwplUlDxSwZK8dSg87rgBu6Emw==}
