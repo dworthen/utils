@@ -1,6 +1,6 @@
 {
   "name": "@d-dev/eslint-config",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "eslint config",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -33,7 +33,7 @@
   "homepage": "https://github.com/dworthen/utils",
   "license": "MIT",
   "dependencies": {
-    "@d-dev/eslint-plugin": "workspace:^1.1.0",
+    "@d-dev/eslint-plugin": "workspace:^1.1.1",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
     "eslint-config-prettier": "^8.5.0",

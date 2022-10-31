@@ -1,5 +1,14 @@
 # @d-dev/plop-add-files-plugin
 
+## 1.2.1
+
+### Patch Changes
+
+- cabf659: Update release
+
+  - Explicitly list files to deploy to npm
+  - Add repo info to package.json
+
 ## 1.2.0
 
 ### Minor Changes

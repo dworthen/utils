@@ -1,6 +1,6 @@
 {
   "name": "@d-dev/plop-add-files-plugin",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Polp plugin for adding files.",
   "type": "module",
   "types": "./dist/index.d.ts",
