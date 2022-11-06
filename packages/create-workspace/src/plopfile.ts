@@ -32,7 +32,39 @@ export default async function (plop: NodePlopAPI): Promise<void> {
         base: 'templates/monorepo/',
         verbose: true,
         force: false,
-        skipIfExists: true,
+        skipIfExists: false,
+        globOptions: {
+          cwd: join(__dirname, '../'),
+          dot: true,
+        },
+      })
+
+      return actions
+    },
+  })
+
+  plop.setGenerator('library', {
+    description: 'scaffold TS library into monorepo structure.',
+    prompts: [
+      {
+        type: 'input',
+        name: 'name',
+        message: 'project name',
+      },
+    ],
+    actions: function (data) {
+      const actions = []
+
+      data = data ?? {}
+
+      actions.push({
+        type: 'addFiles',
+        templateFiles: './templates/library/**/*',
+        destination: './{{name}}/',
+        base: 'templates/library/',
+        verbose: true,
+        force: false,
+        skipIfExists: false,
         globOptions: {
           cwd: join(__dirname, '../'),
           dot: true,
