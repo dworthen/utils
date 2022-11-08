@@ -1,5 +1,11 @@
 # @d-dev/create-workspace
 
+## 1.1.1
+
+### Patch Changes
+
+- 62105a0: Fix missing templates folder
+
 ## 1.1.0
 
 ### Minor Changes
