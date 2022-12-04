@@ -74,4 +74,36 @@ export default async function (plop: NodePlopAPI): Promise<void> {
       return actions
     },
   })
+
+  plop.setGenerator('python-workspace', {
+    description: 'Scaffold python workspace',
+    prompts: [
+      {
+        type: 'input',
+        name: 'name',
+        message: 'project name',
+      },
+    ],
+    actions: function (data) {
+      const actions = []
+
+      data = data ?? {}
+
+      actions.push({
+        type: 'addFiles',
+        templateFiles: './templates/python-workspace/**/*',
+        destination: './{{name}}/',
+        base: 'templates/python-workspace/',
+        verbose: true,
+        force: false,
+        skipIfExists: false,
+        globOptions: {
+          cwd: join(__dirname, '../'),
+          dot: true,
+        },
+      })
+
+      return actions
+    },
+  })
 }
