@@ -33,6 +33,7 @@
   "homepage": "https://github.com/dworthen/utils",
   "license": "MIT",
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.33.5",
     "@types/debug": "^4.1.7",
     "shx": "^0.3.4",
     "tsup": "^6.3.0",

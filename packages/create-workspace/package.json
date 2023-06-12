@@ -37,6 +37,8 @@
   "dependencies": {
     "@d-dev/logger": "workspace:^1.1.0",
     "@d-dev/plop-add-files-plugin": "workspace:^1.2.1",
+    "@types/minimist": "^1.2.2",
+    "minimist": "^1.2.8",
     "plop": "^3.1.1"
   },
   "devDependencies": {
