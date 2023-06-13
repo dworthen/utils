@@ -1,5 +1,11 @@
 # @d-dev/archive-downloader
 
+## 0.0.3
+
+### Patch Changes
+
+- 5a6c318: Update release process
+
 ## 0.0.2
 
 ### Patch Changes
