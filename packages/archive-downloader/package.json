@@ -17,6 +17,7 @@
   },
   "files": [
     "dist/",
+    "src/",
     "LICENSE",
     "README.md",
     "package.json"
@@ -38,6 +39,10 @@
     },
     "arch": {
       "x64": "x86_64"
+    },
+    "variables": {
+      "version": "0.0.7",
+      "name": "goclitest"
     }
   },
   "keywords": [],
@@ -62,7 +67,6 @@
     "commander": "^10.0.1",
     "execa": "^7.1.1",
     "extract-zip": "^2.0.1",
-    "find-up": "^6.3.0",
     "handlebars": "^4.7.7",
     "shelljs": "^0.8.5",
     "tar": "^6.1.15",

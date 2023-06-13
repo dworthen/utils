@@ -4,15 +4,14 @@ import { existsSync } from 'node:fs'
 import fs from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 import { Command } from 'commander'
-import { findUp } from 'find-up'
 import Handlebars from 'handlebars'
 
-import packageConfig from '../package.json' assert { type: 'json' }
 import { downloadArchive } from './downloader/index.js'
 
-const program = new Command()
+const dirname = path.dirname(fileURLToPath(import.meta.url))
 
 type CommandOptions = {
   config?: string
@@ -21,6 +20,8 @@ type CommandOptions = {
   platform?: Record<string, string>
   arch?: Record<string, string>
   packageJson?: string
+  force?: boolean
+  variables?: Record<string, string>
 }
 
 type UrlVariables = {
@@ -31,40 +32,53 @@ type UrlVariables = {
   platformExt: string
 }
 
-program
-  .name('archive-downloader')
-  .description('downloads and extracts archive to destination directory.')
-  .argument('[source-url]', 'location of archive to download.')
-  .argument('[dest]', 'destination directory of where to extract the archive.')
-  .option(
-    '-a, --arch <arch-map>',
-    'A repeatable mapping of arch',
-    parseRecordMapping,
+async function run(): Promise<void> {
+  const packageConfig = JSON.parse(
+    await fs.readFile(path.resolve(dirname, '../package.json'), 'utf-8'),
   )
-  .option(
-    '-p, --platform <platform-os-map>',
-    'A repeatable mapping of platform os.',
-    parseRecordMapping,
-  )
-  .option(
-    '-c, --config <configFile>',
-    'Load config from a file.',
-    './package.json',
-  )
-  .option(
-    '-k, --package-json <packageJson>',
-    'package.json path to load version and name variables. Defaults to finding the nearest parent package.json file.',
-  )
-  .version(packageConfig.version)
-  .action(
-    async (sourceUrl?: string, dest?: string, opts: CommandOptions = {}) => {
-      const config = await loadConfig(sourceUrl, dest, opts)
-      validateConfig(config)
-      const variables = await loadVariables(config)
-      const url = parseUrl(config.url!, variables)
-      await downloadArchive(url, config.dest!)
-    },
-  )
+  const program = new Command()
+  await program
+    .name('archive-downloader')
+    .description('downloads and extracts archive to destination directory.')
+    .argument('[source-url]', 'location of archive to download.')
+    .argument(
+      '[dest]',
+      'destination directory of where to extract the archive.',
+    )
+    .option(
+      '-a, --arch <arch-map>',
+      'A repeatable mapping of arch',
+      parseRecordMapping,
+    )
+    .option(
+      '-p, --platform <platform-os-map>',
+      'A repeatable mapping of platform os.',
+      parseRecordMapping,
+    )
+    .option(
+      '-v, --variables <variables>',
+      'list of key=value variables to make available in the download url.',
+      parseRecordMapping,
+    )
+    .option(
+      '-c, --config <configFile>',
+      'Load config from a file.',
+      './package.json',
+    )
+    .option('-f, --force', 'overwrite destination.', false)
+    .version(packageConfig.version)
+    .action(
+      async (sourceUrl?: string, dest?: string, opts: CommandOptions = {}) => {
+        const config = await loadConfig(sourceUrl, dest, opts)
+        validateConfig(config)
+        const variables = await loadVariables(config)
+        const url = parseUrl(config.url!, variables)
+        console.log(`Downloading archive ${url} to ${config.dest!}`)
+        await downloadArchive(url, config.dest!, { force: config.force })
+      },
+    )
+    .parse()
+}
 
 function parseRecordMapping(
   val: string,
@@ -97,6 +111,7 @@ function parseUrl(url: string, variables: Record<string, string>): string {
 
 async function loadVariables(config: CommandOptions): Promise<UrlVariables> {
   const variables: UrlVariables = {
+    ...config.variables,
     platform: os.platform(),
     arch: os.arch(),
     platformExt: process.platform === 'win32' ? '.zip' : '.tar.gz',
@@ -110,16 +125,6 @@ async function loadVariables(config: CommandOptions): Promise<UrlVariables> {
     variables.platform = config.platform[variables.platform] as string
   }
 
-  const packageJsonPath =
-    config.packageJson != null
-      ? path.resolve(config.packageJson)
-      : await findUp('package.json')
-
-  if (packageJsonPath != null) {
-    const pkgJson = JSON.parse(await fs.readFile(packageJsonPath, 'utf-8'))
-    variables.name = pkgJson.name
-    variables.version = pkgJson.version
-  }
   return variables
 }
 
@@ -163,8 +168,12 @@ async function loadConfig(
       ...config.arch,
       ...options.arch,
     }
+    options.variables = {
+      ...config.variables,
+      ...options.variables,
+    }
   }
   return options
 }
 
-program.parse()
+void run()

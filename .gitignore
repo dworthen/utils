@@ -2,6 +2,8 @@ node_modules
 packages/*/dist
 packages/*/lib
 packages/*/temp
+packages/archive-downloader/bin
+packages/archive-downloader/.archive
 *.env
 .env.*
 coverage

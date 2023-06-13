@@ -1,11 +1,13 @@
 import { existsSync } from 'node:fs'
 import * as fs from 'node:fs/promises'
-import os from 'node:os'
+import { fileURLToPath } from 'node:url'
 
 import extractZip from 'extract-zip'
 import * as path from 'path'
 import { extract as extractTar } from 'tar'
-import { request } from 'undici'
+import { fetch } from 'undici'
+
+const dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export type DownloadArtifactsOptions = {
   force?: boolean
@@ -22,17 +24,24 @@ export async function downloadArchive(
   await createDestination(dest, force)
 
   const archiveName = url.replace(/\/$/, '').split('/').at(-1) as string
-  const archiveDir = path.resolve(os.tmpdir(), 'archive-downloader')
+  const archiveDir = path.resolve(dirname, '../.archive')
   if (existsSync(archiveDir)) {
     await fs.rm(archiveDir, { force: true, recursive: true })
   }
-  await fs.mkdir(archiveDir)
+  await fs.mkdir(archiveDir, { recursive: true })
 
   // Download archive to ./archiveContents/[assetName].zip
   const archivePath = path.join(archiveDir, archiveName)
-  const downloadRes = await request(url, { maxRedirections: 10 })
-  const archiveBuffer = await downloadRes.body.arrayBuffer()
-  await fs.writeFile(archivePath, archiveBuffer as any)
+  const downloadRes = await fetch(url)
+
+  if (downloadRes.status !== 200) {
+    throw Error(
+      `Unable to download archive from ${url}. Status code ${downloadRes.status}: ${downloadRes.statusText}`,
+    )
+  }
+
+  const archiveBuffer = downloadRes.body!
+  await fs.writeFile(archivePath, archiveBuffer)
 
   await extract(archivePath, dest)
   await fs.rm(archiveDir, { force: true, recursive: true })
