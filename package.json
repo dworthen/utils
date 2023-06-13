@@ -18,7 +18,7 @@
     "prerelease:version": "run-s git:clean",
     "release:version": "changeset version",
     "prerelease:publish": "run-s git:clean",
-    "release:publish": "changeset publish --otp $NPM_TOKEN"
+    "release:publish": "changeset publish"
   },
   "devDependencies": {
     "@changesets/changelog-git": "^0.1.13",
