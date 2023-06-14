@@ -77,7 +77,7 @@ async function run(): Promise<void> {
         await downloadArchive(url, config.dest!, { force: config.force })
       },
     )
-    .parse()
+    .parseAsync()
 }
 
 function parseRecordMapping(
