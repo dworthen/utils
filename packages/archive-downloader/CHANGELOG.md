@@ -1,5 +1,11 @@
 # @d-dev/archive-downloader
 
+## 0.0.4
+
+### Patch Changes
+
+- 8ca9696: Parse command async
+
 ## 0.0.3
 
 ### Patch Changes
