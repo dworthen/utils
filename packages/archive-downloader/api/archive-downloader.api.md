@@ -4,7 +4,13 @@
 
 ```ts
 
-import { ExecaReturnValue } from 'execa';
+// Warning: (ae-missing-release-tag) "BinReturn" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
+//
+// @public (undocumented)
+export type BinReturn = {
+    stdout: string;
+    stderr: string;
+};
 
 // Warning: (ae-missing-release-tag) "downloadArchive" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //
@@ -21,7 +27,7 @@ export type DownloadArtifactsOptions = {
 // Warning: (ae-missing-release-tag) "wrapBin" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //
 // @public (undocumented)
-export function wrapBin(binPath: string): (args: string[]) => Promise<ExecaReturnValue<string>>;
+export function wrapBin(binPath: string): (...args: string[]) => Promise<BinReturn>;
 
 // (No @packageDocumentation comment for this package)
 

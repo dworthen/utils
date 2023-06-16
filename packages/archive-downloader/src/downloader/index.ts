@@ -1,13 +1,10 @@
 import { existsSync } from 'node:fs'
 import * as fs from 'node:fs/promises'
-import { fileURLToPath } from 'node:url'
 
 import extractZip from 'extract-zip'
 import * as path from 'path'
 import { extract as extractTar } from 'tar'
 import { fetch } from 'undici'
-
-const dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export type DownloadArtifactsOptions = {
   force?: boolean
@@ -24,7 +21,7 @@ export async function downloadArchive(
   await createDestination(dest, force)
 
   const archiveName = url.replace(/\/$/, '').split('/').at(-1) as string
-  const archiveDir = path.resolve(dirname, '../.archive')
+  const archiveDir = path.resolve(__dirname, '../.archive')
   if (existsSync(archiveDir)) {
     await fs.rm(archiveDir, { force: true, recursive: true })
   }

@@ -4,14 +4,11 @@ import { existsSync } from 'node:fs'
 import fs from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 
 import { Command } from 'commander'
 import Handlebars from 'handlebars'
 
 import { downloadArchive } from './downloader/index.js'
-
-const dirname = path.dirname(fileURLToPath(import.meta.url))
 
 type CommandOptions = {
   config?: string
@@ -34,7 +31,7 @@ type UrlVariables = {
 
 async function run(): Promise<void> {
   const packageConfig = JSON.parse(
-    await fs.readFile(path.resolve(dirname, '../package.json'), 'utf-8'),
+    await fs.readFile(path.resolve(__dirname, '../package.json'), 'utf-8'),
   )
   const program = new Command()
   await program

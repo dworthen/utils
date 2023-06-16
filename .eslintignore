@@ -2,3 +2,7 @@ packages/*/dist
 packages/*/lib
 packages/*/temp
 packages/*/api
+packages/*/.turbo
+packages/*/bin
+node_modules
+
