@@ -1,5 +1,11 @@
 # @d-dev/archive-downloader
 
+## 0.0.5
+
+### Patch Changes
+
+- eb6675b: Support cjs and esm formats
+
 ## 0.0.4
 
 ### Patch Changes
