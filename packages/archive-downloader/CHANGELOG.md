@@ -1,5 +1,11 @@
 # @d-dev/archive-downloader
 
+## 0.1.0
+
+### Minor Changes
+
+- 3afb6e0: Skip installing bin if it already exists.
+
 ## 0.0.5
 
 ### Patch Changes
