@@ -17,7 +17,7 @@ type CommandOptions = {
   platform?: Record<string, string>
   arch?: Record<string, string>
   packageJson?: string
-  force?: boolean
+  skip?: boolean
   variables?: Record<string, string>
 }
 
@@ -52,6 +52,7 @@ async function run(): Promise<void> {
       'A repeatable mapping of platform os.',
       parseRecordMapping,
     )
+    .option('--no-skip', 'Always install Skip if binary already exists.')
     .option(
       '-v, --variables <variables>',
       'list of key=value variables to make available in the download url.',
@@ -62,19 +63,26 @@ async function run(): Promise<void> {
       'Load config from a file.',
       './package.json',
     )
-    .option('-f, --force', 'overwrite destination.', false)
     .version(packageConfig.version)
     .action(
       async (sourceUrl?: string, dest?: string, opts: CommandOptions = {}) => {
         const config = await loadConfig(sourceUrl, dest, opts)
         validateConfig(config)
+        if (await shouldSkip(config)) {
+          console.log(`${config.dest!} already exists. Skipping install.`)
+          return
+        }
         const variables = await loadVariables(config)
         const url = parseUrl(config.url!, variables)
         console.log(`Downloading archive ${url} to ${config.dest!}`)
-        await downloadArchive(url, config.dest!, { force: config.force })
+        await downloadArchive(url, config.dest!, { force: true })
       },
     )
     .parseAsync()
+}
+
+async function shouldSkip(config: CommandOptions): Promise<boolean> {
+  return (await existsSync(config.dest!)) && config.skip!
 }
 
 function parseRecordMapping(
@@ -125,6 +133,31 @@ async function loadVariables(config: CommandOptions): Promise<UrlVariables> {
   return variables
 }
 
+function isRecord(obj: unknown): obj is Record<string, unknown> {
+  return obj != null && typeof obj === 'object' && !Array.isArray(obj)
+}
+
+function mergeDeep(
+  target: unknown,
+  ...sources: unknown[]
+): Record<string, unknown> {
+  if (sources.length === 0) return target as Record<string, unknown>
+  const source = sources.shift()
+
+  if (isRecord(target) && isRecord(source)) {
+    for (const key in source) {
+      if (isRecord(source[key])) {
+        if (!(key in target)) Object.assign(target, { [key]: {} })
+        mergeDeep(target[key], source[key])
+      } else {
+        Object.assign(target, { [key]: source[key] })
+      }
+    }
+  }
+
+  return mergeDeep(target, ...sources)
+}
+
 async function loadConfig(
   sourceUrl?: string,
   dest?: string,
@@ -150,25 +183,7 @@ async function loadConfig(
         'archive-downloader'
       ] ?? {}
 
-    if (config.dest != null && config.dest !== '') {
-      const configDir = path.dirname(configPath)
-      config.dest = path.resolve(configDir, config.dest)
-    }
-
-    options.url = options.url ?? config.url
-    options.dest = options.dest ?? config.dest
-    options.platform = {
-      ...config.platform,
-      ...options.platform,
-    }
-    options.arch = {
-      ...config.arch,
-      ...options.arch,
-    }
-    options.variables = {
-      ...config.variables,
-      ...options.variables,
-    }
+    return mergeDeep(config, options)
   }
   return options
 }
