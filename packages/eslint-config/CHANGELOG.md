@@ -1,5 +1,11 @@
 # @d-dev/eslint-config
 
+## 2.0.1
+
+### Patch Changes
+
+- 6379902: Update peer deps
+
 ## 2.0.0
 
 ### Major Changes
