@@ -1,5 +1,11 @@
 # @d-dev/eslint-plugin
 
+## 1.2.0
+
+### Minor Changes
+
+- 8c9b8a8: Support json and css file extensions
+
 ## 1.1.1
 
 ### Patch Changes
