@@ -1,5 +1,11 @@
 # @d-dev/eslint-config
 
+## 2.0.0
+
+### Major Changes
+
+- 5b88a64: Update eslint config
+
 ## 1.1.1
 
 ### Patch Changes
