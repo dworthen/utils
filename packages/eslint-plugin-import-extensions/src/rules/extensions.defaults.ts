@@ -9,6 +9,6 @@ export const defaultSettings: Required<ExtensionsOptions> = {
   files: ['**/*.{ts,tsx,js,jsx,mts,mjs}'],
   ignorePackages: true,
   relativeModulePrefixes: ['.'],
-  expectedExtensions: ['.js'],
+  expectedExtensions: ['.js', '.json', '.css'],
   disallowedExtensions: [],
 }
