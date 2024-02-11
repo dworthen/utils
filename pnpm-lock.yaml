@@ -15,7 +15,7 @@ importers:
         specifier: ^2.25.1
         version: 2.25.1
       '@d-dev/eslint-config':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^2.0.0
         version: link:packages/eslint-config
       '@d-dev/eslint-plugin':
         specifier: workspace:^1.1.0
@@ -155,8 +155,8 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0(eslint@8.26.0)
       prettier:
-        specifier: ^2.7.1
-        version: 2.7.1
+        specifier: ^3.1.0
+        version: 3.2.5
     devDependencies:
       '@microsoft/api-extractor':
         specifier: ^7.33.5
@@ -5565,17 +5565,17 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  /prettier@2.7.1:
-    resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-    dev: false
-
   /prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
+
+  /prettier@3.2.5:
+    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: false
 
   /pretty-format@29.2.1:
     resolution: {integrity: sha512-Y41Sa4aLCtKAXvwuIpTvcFBkyeYp2gdFWzXGA+ZNES3VwURIB165XO/z7CjETwzCCS53MjW/rLMyyqEnTtaOfA==}
