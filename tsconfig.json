@@ -5,6 +5,7 @@
     "lib": [
       "ESNext"
     ],
+    "emitDeclarationOnly": true,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,

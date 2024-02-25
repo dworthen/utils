@@ -1,4 +1,8 @@
 module.exports = {
+  env: {
+    browser: true,
+    node: true,
+  },
   extends: ['@d-dev'],
   plugins: ['@d-dev'],
   rules: {
