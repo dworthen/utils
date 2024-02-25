@@ -1,6 +1,6 @@
 {
   "name": "@d-dev/bin-install",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Install binaries",
   "type": "module",
   "types": "./dist/index.d.ts",
